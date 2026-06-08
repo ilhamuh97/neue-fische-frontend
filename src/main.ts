@@ -268,9 +268,9 @@ console.log(["12345", "Test1234", "test", "t"].filter((text: string) => text.len
 console.log([1, 2, 3, 4].reduce((a: number, b: number): number => a + b, 0));
 console.log([1, 2, 3, 4, 15].some((a: number): boolean => a >= 10));
 
-const list = [15, 6, 3213, 9, 0, 12, 8464 , 1, 1264, 481, 186, 1031, 194];
-console.log([...list]
-    .sort((a: number, b: number): number => b-a) // Sortiere diese Zahlen in absteigender Reihenfolge.
+const list: number[] = [15, 6, 3213, 9, 0, 12, 8464 , 1, 1264, 481, 186, 1031, 194];
+console.log("Ergebnis: ", list
+    .toSorted((a: number, b: number): number => b-a) // Sortiere diese Zahlen in absteigender Reihenfolge or use for copy toSorted (es2023)
     .map((a: number): number => a*a) // Quadriere diese Zahlen.
     .slice(4, list.length - 2) // Entferne die zwei niedrigsten und die vier höchsten Zahlen aus der Liste.
     .filter((a: number): number => a%4) // Entferne alle Zahlen, die durch 4 teilbar sind.
