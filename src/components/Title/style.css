@@ -1,0 +1,292 @@
+/* ==========================================================================
+   Awwwards Studio Tokens (Experimental Luxury Look)
+   ========================================================================== */
+:root {
+    --font-display: "Syne", "Clash Display", -apple-system, sans-serif;
+    --font-mono: "PP Neue Mono", "Space Mono", monospace;
+
+    --bg-brutal: #0a0a0c;
+    --accent-neon: #d4ff00; /* Ultra-vibrant chartreuse highlight */
+    --text-pure: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.45);
+
+    --cubic-bezier: cubic-bezier(0.76, 0, 0.24, 1); /* Custom extreme ease */
+
+    /* Initial rotation variables manipulated by React JS hooks */
+    --x-rotation: 0deg;
+    --y-rotation: 0deg;
+}
+
+/* Base Immersive Layout Setup */
+.awwwards-hero {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg-brutal);
+    font-family: var(--font-display), serif;
+    color: var(--text-pure);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+    overflow: hidden;
+}
+
+/* Film Grain Texture Overlays */
+.noise-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3 Atemply%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Background Cyber Grid Structure */
+.grid-mesh {
+    position: absolute;
+    inset: 0;
+    background-size: 40px 40px;
+    background-image:
+            linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+}
+
+/* ==========================================================================
+   The Interactive Stage (Reactive 3D Canvas)
+   ========================================================================== */
+.interactive-stage {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+    transform: perspective(1000px) rotateX(var(--x-rotation)) rotateY(var(--y-rotation));
+    transition: transform 0.5s var(--cubic-bezier);
+}
+
+/* Metadata Rows */
+.meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono), serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-neon);
+}
+
+.status-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-neon);
+}
+
+/* ==========================================================================
+   Typography (Asymmetric Kinetic Text Layout)
+   ========================================================================== */
+.kinetic-title {
+    font-size: clamp(3.5rem, 9vw, 8.5rem);
+    font-weight: 800;
+    line-height: 0.85;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+}
+
+.word-row {
+    display: block;
+    transition: transform 0.4s var(--cubic-bezier);
+}
+
+.offset-left { transform: translateX(-2vw); }
+.offset-right {
+    transform: translateX(6vw);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+}
+
+.emphasis-italic {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    text-transform: lowercase;
+    color: var(--accent-neon);
+    transform: translateX(2vw);
+}
+
+.glyph {
+    font-size: 0.3em;
+    vertical-align: super;
+    font-family: var(--font-mono), serif;
+}
+
+/* Title Interactivity: Moves lines apart on wrapper hover */
+.interactive-stage:hover .offset-left { transform: translateX(-3vw); }
+.interactive-stage:hover .offset-right { transform: translateX(4vw); }
+
+/* ==========================================================================
+   Asymmetric Architectural Layout
+   ========================================================================== */
+.asymmetric-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+/* Immersive Abstract Media Placeholder */
+.abstract-canvas {
+    height: 220px;
+    background: linear-gradient(45deg, #121214, #1c1c22);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+
+.canvas-pulse {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: var(--accent-neon);
+    filter: blur(60px);
+    top: 20%;
+    left: 20%;
+    opacity: 0.3;
+    animation: pulseMove 8s infinite alternate ease-in-out;
+}
+
+.editorial-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+
+/* ==========================================================================
+   Super Complex UI Buttons (Marquee & Magnetic Clones)
+   ========================================================================== */
+.magnetic-button-group {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+/* Primary Button: Dual-layer Marquee Slider effect */
+.btn-kinetic-primary {
+    background: var(--accent-neon);
+    color: #000;
+    border: none;
+    font-family: var(--font-display), serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 18px 36px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s var(--cubic-bezier);
+}
+
+.btn-marquee-wrapper {
+    display: block;
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+}
+
+.btn-text {
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Invisible secondary absolute line directly below the main text */
+.btn-text[aria-hidden="true"] {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+/* Hover: slides the text upward like an index ticker */
+.btn-kinetic-primary:hover .btn-text {
+    transform: translateY(-100%);
+}
+
+.btn-kinetic-primary:hover {
+    transform: scale(1.04) rotate(-1deg);
+}
+
+/* Secondary Button: Clean Experimental Magnet Link */
+.btn-kinetic-secondary {
+    background: transparent;
+    border: none;
+    color: var(--text-pure);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono), serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    padding: 10px 0;
+}
+
+.btn-circle-magnet {
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--text-pure);
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.4s var(--cubic-bezier);
+}
+
+.btn-kinetic-secondary:hover .btn-circle-magnet {
+    background: var(--text-pure);
+    transform: scale(2.2);
+    border-color: transparent;
+}
+
+.btn-kinetic-secondary:hover .btn-secondary-text {
+    color: var(--accent-neon);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes pulseMove {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, 30px) scale(1.3); }
+}
+
+/* Immersive Responsive System overrides */
+@media (max-width: 768px) {
+    .asymmetric-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .abstract-canvas { display: none; }
+    .offset-left, .offset-right, .emphasis-italic { transform: none !important; }
+}

@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Awwwards Immersive Footer Layout
+   ========================================================================== */
+.studio-footer {
+    background-color: #0a0a0c;
+    font-family: "Syne", "Clash Display", -apple-system, sans-serif;
+    color: #ffffff;
+    padding: 6vw 4vw 2vw 4vw;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Three-column asymmetrical architectural grid */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    position: relative;
+    z-index: 2; /* Sits cleanly above giant background text */
+    margin-bottom: 6vw;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Fine structural labels */
+.col-label {
+    font-family: "PP Neue Mono", "Space Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.status-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 360px;
+}
+
+.meta-text, .footer-nav-list {
+    font-family: "PP Neue Mono", "Space Mono", monospace;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    list-style: none;
+}
+
+/* Super sleek interactive link underlines */
+.footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    transition: color 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #d4ff00; /* Matching our accent color choice */
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.footer-link:hover {
+    color: #d4ff00;
+}
+
+.footer-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* ==========================================================================
+   Giant Brutalist Watermark Typeface
+   ========================================================================== */
+.footer-giant-branding {
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+    margin-top: 2rem;
+    line-height: 0.75;
+}
+
+.footer-giant-branding span {
+    font-size: clamp(6rem, 18vw, 22rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.03); /* Extremely subtle line blend */
+    display: block;
+    transition: -webkit-text-stroke 0.5s ease;
+}
+
+/* Highlight signature on overall footer hover context */
+.studio-footer:hover .footer-giant-branding span {
+    -webkit-text-stroke: 2px rgba(212, 255, 0, 0.07);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
