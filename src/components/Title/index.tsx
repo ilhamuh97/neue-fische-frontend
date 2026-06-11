@@ -1,27 +1,26 @@
-import { useEffect, useRef } from "react";
+import {type ReactElement, type RefObject, useEffect, useRef} from "react";
 import "./style.css";
 
-function Index() {
-	// 1. Explicitly type the ref as an HTMLDivElement
-	const cardRef = useRef<HTMLDivElement>(null);
+function Index (): ReactElement {
+	const cardRef: RefObject <HTMLDivElement | null> = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		const card = cardRef.current;
+	useEffect(():(() => void) | undefined => {
+		const card: HTMLDivElement | null = cardRef.current;
 		if (!card) return;
 
-		const handleMouseMove = (e: MouseEvent) => {
+		const handleMouseMove: (e: MouseEvent) => void = (e: MouseEvent): void => {
 			const { clientX, clientY } = e;
 			const { left, top, width, height } = card.getBoundingClientRect();
 
-			const x = (clientX - left - width / 2) / (width / 2);
-			const y = (clientY - top - height / 2) / (height / 2);
+			const x: number = (clientX - left - width / 2) / (width / 2);
+			const y: number = (clientY - top - height / 2) / (height / 2);
 
 			// TypeScript is happy now because card is guaranteed to be an HTMLElement
 			card.style.setProperty("--x-rotation", `${y * -8}deg`);
 			card.style.setProperty("--y-rotation", `${x * 8}deg`);
 		};
 
-		const handleMouseLeave = () => {
+		const handleMouseLeave: () => void = (): void => {
 			card.style.setProperty("--x-rotation", "0deg");
 			card.style.setProperty("--y-rotation", "0deg");
 		};
@@ -29,7 +28,7 @@ function Index() {
 		window.addEventListener("mousemove", handleMouseMove);
 		card.addEventListener("mouseleave", handleMouseLeave);
 
-		return () => {
+		return (): void => {
 			window.removeEventListener("mousemove", handleMouseMove);
 			card.removeEventListener("mouseleave", handleMouseLeave);
 		};

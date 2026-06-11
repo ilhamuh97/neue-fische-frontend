@@ -1,8 +1,9 @@
 import './App.css'
 import Footer from "./components/Footer";
-import Title from "./components/Title"; // This houses your Title/Hero component
+import Title from "./components/Title";
+import type {ReactElement} from "react"; // This houses your Title/Hero component
 
-function App() {
+function App(): ReactElement {
 	return (
 		<main className="studio-viewport-wrapper">
 			{/* Immersive Cinematic Title/Hero Section */}

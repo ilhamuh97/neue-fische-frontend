@@ -1,7 +1,8 @@
 import "./style.css";
+import type {ReactElement} from "react";
 
-function Footer() {
-	const currentYear = new Date().getFullYear();
+function Footer(): ReactElement {
+	const currentYear: number = new Date().getFullYear();
 
 	return (
 		<footer className="studio-footer">
