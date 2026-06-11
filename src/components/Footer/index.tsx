@@ -17,9 +17,9 @@ function Footer(): ReactElement {
 				<div className="footer-col col-links">
 					<span className="col-label">// DIRECTORY</span>
 					<ul className="footer-nav-list">
-						<li><a href="#projects" className="footer-link">Selected Work</a></li>
-						<li><a href="#lab" className="footer-link">The UI Lab</a></li>
-						<li><a href="#contact" className="footer-link">Initiate Brief</a></li>
+						<li><a href="/#projects" className="footer-link">Selected Work</a></li>
+						<li><a href="/#lab" className="footer-link">The UI Lab</a></li>
+						<li><a href="/#contact" className="footer-link">Initiate Brief</a></li>
 					</ul>
 				</div>
 
