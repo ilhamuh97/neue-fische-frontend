@@ -1,0 +1,38 @@
+.page {
+    padding: 1rem;
+}
+
+.title {
+    margin-bottom: 1rem;
+}
+
+.search {
+    margin-bottom: 1rem;
+}
+
+.empty {
+    color: #888;
+    margin-top: 1rem;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    transition: background 0.2s ease;
+}
+
+.button:hover {
+    background: #444;
+}
