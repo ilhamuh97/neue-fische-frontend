@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function Index(): ReactElement {
 	return (
-		<div className="home">
+		<div className="page">
 			<h1 className="home-title">Hello World</h1>
 		</div>
 	);

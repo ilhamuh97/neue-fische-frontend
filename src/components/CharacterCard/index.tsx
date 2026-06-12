@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import "./style.css";
+import {useNavigate} from "react-router-dom";
 
 export type Character = {
 	id: number;
@@ -30,6 +31,8 @@ type CharacterCardProps = {
 };
 
 export default function Index({ character }: CharacterCardProps): ReactElement {
+	const nav = useNavigate();
+	console.log(character)
 	const statusClass =
 		character.status === "Alive"
 			? "status-alive"
@@ -37,8 +40,12 @@ export default function Index({ character }: CharacterCardProps): ReactElement {
 				? "status-dead"
 				: "status-unknown";
 
+	const toDetail = (path: string) => {
+		console.log(path)
+		nav(path)
+	}
 	return (
-		<div className="card">
+		<div className="card" onClick={() => toDetail(`/characters/${character.id}`)}>
 			<img
 				src={character.image}
 				alt={character.name}

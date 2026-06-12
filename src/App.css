@@ -3,6 +3,31 @@
     flex-direction: column;
 }
 
+.page {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    max-width: 1440px;
+    margin: auto;
+}
+
+.button {
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    transition: background 0.2s ease;
+}
+
+.button:hover {
+    background: #444;
+}
+
 .page-content {
     flex: 1;
     margin: 1rem;
