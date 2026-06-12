@@ -1,4 +1,5 @@
-import type {ChangeEvent, ReactElement} from "react";
+import type { ChangeEvent, ReactElement } from "react";
+import "./style.css";
 
 type SearchbarProps = {
 	searchTerm: string;
@@ -11,16 +12,10 @@ export default function Index({searchTerm, handleSearch,}: SearchbarProps): Reac
 			type="text"
 			placeholder="Search character..."
 			value={searchTerm}
-			onChange={(event: ChangeEvent<HTMLInputElement, HTMLInputElement>): void =>
+			onChange={(event: ChangeEvent<HTMLInputElement>) =>
 				handleSearch(event.target.value)
 			}
-			style={{
-				padding: "10px",
-				width: "300px",
-				borderRadius: "8px",
-				border: "1px solid gray",
-				marginBottom: "20px",
-			}}
+			className="search-input"
 		/>
 	);
 }

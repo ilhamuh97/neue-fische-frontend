@@ -1,4 +1,5 @@
-import type {ReactElement} from "react";
+import type { ReactElement } from "react";
+import "./style.css";
 
 export type Character = {
 	id: number;
@@ -19,9 +20,7 @@ export type Character = {
 	};
 
 	image: string;
-
 	episode: string[];
-
 	url: string;
 	created: string;
 };
@@ -31,28 +30,27 @@ type CharacterCardProps = {
 };
 
 export default function Index({ character }: CharacterCardProps): ReactElement {
+	const statusClass =
+		character.status === "Alive"
+			? "status-alive"
+			: character.status === "Dead"
+				? "status-dead"
+				: "status-unknown";
+
 	return (
-		<div
-			style={{
-				border: "1px solid lightgray",
-				borderRadius: "10px",
-				padding: "16px",
-				width: "220px",
-				textAlign: "center",
-			}}
-		>
+		<div className="card">
 			<img
 				src={character.image}
 				alt={character.name}
-				style={{
-					width: "100%",
-					borderRadius: "10px",
-				}}
+				className="card-image"
 			/>
 
-			<h2>{character.name}</h2>
+			<h2 className="card-title">{character.name}</h2>
 
-			<p>Status: {character.status}</p>
+			<div className={`status-badge ${statusClass}`}>
+				{character.status}
+			</div>
+
 			<p>Species: {character.species}</p>
 		</div>
 	);

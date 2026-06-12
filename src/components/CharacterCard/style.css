@@ -1,0 +1,47 @@
+.card {
+    border-radius: 10px;
+    padding: 16px;
+    width: 220px;
+    text-align: center;
+    background: white;
+    transition: 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.card-title {
+    margin: 10px 0 5px;
+    font-size: 18px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    background: #eee;
+}
+
+.status-alive {
+    background: #d4f8d4;
+    color: #1e7d1e;
+}
+
+.status-dead {
+    background: #ffd6d6;
+    color: #a30000;
+}
+
+.status-unknown {
+    background: #e0e0e0;
+    color: #555;
+}
