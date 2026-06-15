@@ -9,13 +9,13 @@ function Index() {
 	}
 
 	return (
-		<div className="header">
+		<header className="header">
 			<div className="nav">
 				<button onClick={() => doNav("/")} className="nav-link">Home</button>
 				<button onClick={() => doNav("/characters")} className="nav-link">Characters</button>
 				<button onClick={() => doNav("/add")} className="nav-link">Add</button>
 			</div>
-		</div>
+		</header>
 	);
 }
 

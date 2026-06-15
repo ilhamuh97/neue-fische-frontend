@@ -7,6 +7,8 @@ import {useCharacters} from "../../components/hooks/useCharacters.tsx";
 export default function Index(): ReactElement {
 	const {characters} = useCharacters();
 
+	console.log(characters)
+
 	const [searchTerm, setSearchTerm] = useState<string>("");
 	const [visibleCount, setVisibleCount] = useState<number>(5);
 

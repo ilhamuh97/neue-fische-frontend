@@ -1,12 +1,14 @@
 import "./style.css";
 import { type NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import CharacterCard, {type Character} from "../../components/CharacterCard";
-import { response } from "../../response.ts";
+import {useCharacters} from "../../components/hooks/useCharacters.tsx";
 
 function Index() {
 	const { id } = useParams();
+	const {characters} = useCharacters();
+
 	const nav: NavigateFunction = useNavigate();
-	const character: Character | undefined = response.find(
+	const character: Character | undefined = characters.find(
 		(character: Character): boolean => character.id === Number(id)
 	);
 

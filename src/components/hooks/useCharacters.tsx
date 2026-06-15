@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import {CharactersContext} from "../../context/CharactersContext.tsx";
+import {CharactersContext, type CharactersContextType} from "../../context/CharactersContext.tsx";
 
-export function useCharacters() {
-	const context = useContext(CharactersContext);
+export function useCharacters(): CharactersContextType {
+	const context: CharactersContextType | undefined = useContext(CharactersContext);
 
 	if (!context) {
 		throw new Error(
