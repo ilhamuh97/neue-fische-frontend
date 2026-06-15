@@ -16,8 +16,14 @@ export default function Index(): ReactElement {
 		setSearchTerm(value);
 	};
 
+	const filteredCharacters: Character[] = characters.filter((character) =>
+		character.name.toLowerCase().includes(searchTerm.toLowerCase())
+	);
+
 	const loadMoreCharacters = useCallback(async (): Promise<void> => {
-		if (!nextUrl || loading) return;
+		if (searchTerm) return;
+		if (!nextUrl) return;
+		if (loading) return;
 
 		setLoading(true);
 
@@ -30,7 +36,7 @@ export default function Index(): ReactElement {
 		} finally {
 			setLoading(false);
 		}
-	}, [loading, nextUrl, setCharacters, setNextUrl]);
+	}, [loading, nextUrl, searchTerm, setCharacters, setNextUrl]);
 
 
 	useEffect(() => {
@@ -62,18 +68,15 @@ export default function Index(): ReactElement {
 			)}
 
 			<div className="grid">
-				{characters
+				{filteredCharacters
 				.map((character) => (
 					<CharacterCard key={character.id} character={character} />
 				))}
 			</div>
 
-			{
-				nextUrl ?
-					<div ref={loaderRef} style={{ height: "20px" }}>
-						{loading && <p>Loading...</p>}
-					</div> : ""
-			}
+			<div ref={loaderRef} style={{ height: 20 }}>
+				{loading && <p>Loading...</p>}
+			</div>
 		</div>
 	);
 }
