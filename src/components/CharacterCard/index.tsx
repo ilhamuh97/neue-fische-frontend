@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type { ReactNode } from "react";
 import "./style.css";
 import {type NavigateFunction, useNavigate} from "react-router-dom";
 
@@ -30,7 +30,7 @@ type CharacterCardProps = {
 	character: Character;
 };
 
-export default function Index({ character }: CharacterCardProps): ReactElement {
+export default function Index({ character }: CharacterCardProps): ReactNode {
 	const nav: NavigateFunction = useNavigate();
 	const statusClass =
 		character.status === "Alive"

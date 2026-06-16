@@ -1,4 +1,4 @@
-import { type ReactElement, type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 
 interface InfiniteScrollProps {
 	children: ReactNode;
@@ -8,7 +8,7 @@ interface InfiniteScrollProps {
 }
 
 // https://blog.logrocket.com/react-infinite-scroll/
-export default function InfiniteScroll({children, loading, hasMore, loadMore,}: InfiniteScrollProps): ReactElement {
+export default function InfiniteScroll({children, loading, hasMore, loadMore,}: InfiniteScrollProps): ReactNode {
 	const loaderRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {

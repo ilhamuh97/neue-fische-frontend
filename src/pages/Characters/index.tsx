@@ -1,20 +1,20 @@
 import axios, { type AxiosResponse } from "axios";
-import { type ReactElement, useCallback, useMemo, useRef, useState } from "react";
+import {type ReactNode, type RefObject, useCallback, useMemo, useRef, useState} from "react";
 import Searchbar from "../../components/Searchbar";
 import CharacterCard, { type Character } from "../../components/CharacterCard";
 import InfiniteScroll from "../../components/InifiniteScroll";
 import { useCharacters } from "../../hooks/useCharacters.tsx";
 import "./style.css";
 
-export default function Index(): ReactElement {
+export default function Index(): ReactNode {
 	const { characters, setCharacters, nextUrl, setNextUrl } = useCharacters();
 	const [loading, setLoading] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
-	const isFetching = useRef(false);
+	const isFetching: RefObject<boolean> = useRef(false);
 
-	const filteredCharacters = useMemo(() => {
-		const lowerSearch = searchTerm.toLowerCase();
-		return characters.filter((character) =>
+	const filteredCharacters: Character[] = useMemo((): Character[] => {
+		const lowerSearch: string = searchTerm.toLowerCase();
+		return characters.filter((character: Character): boolean =>
 			character.name.toLowerCase().includes(lowerSearch)
 		);
 	}, [characters, searchTerm]);
@@ -28,7 +28,7 @@ export default function Index(): ReactElement {
 		try {
 			const response: AxiosResponse = await axios.get(nextUrl);
 			setNextUrl(response.data.info.next);
-			setCharacters((prev: Character[]) => [...prev, ...response.data.results]);
+			setCharacters((prev: Character[]): Character[] => [...prev, ...response.data.results]);
 		} catch (err) {
 			console.error("Failed to load more characters:", err);
 		} finally {
@@ -55,7 +55,7 @@ export default function Index(): ReactElement {
 				loadMore={loadMoreCharacters}
 			>
 				<div className="grid">
-					{filteredCharacters.map((character) => (
+					{filteredCharacters.map((character: Character): ReactNode => (
 						<CharacterCard key={character.id} character={character} />
 					))}
 				</div>

@@ -1,4 +1,4 @@
-import type { ChangeEvent, ReactElement } from "react";
+import type { ChangeEvent, ReactNode } from "react";
 import "./style.css";
 
 type SearchbarProps = {
@@ -6,7 +6,7 @@ type SearchbarProps = {
 	handleSearch: (value: string) => void;
 };
 
-export default function Index({searchTerm, handleSearch,}: SearchbarProps): ReactElement {
+export default function Index({searchTerm, handleSearch,}: SearchbarProps): ReactNode {
 	return (
 		<input
 			type="text"

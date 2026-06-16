@@ -1,4 +1,4 @@
-import {type ReactElement, useEffect, useState} from "react";
+import {type ReactNode, useEffect, useState} from "react";
 import Characters from "./pages/Characters";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
@@ -10,7 +10,7 @@ import {CharactersContext} from "./context/CharactersContext.tsx";
 import axios from "axios";
 import type {Character} from "./components/CharacterCard";
 
-function App(): ReactElement {
+function App(): ReactNode {
 	const [characters, setCharacters] = useState([] as Character[]);
 	const [nextUrl, setNextUrl] = useState("");
 
