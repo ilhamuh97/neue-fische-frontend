@@ -1,7 +1,7 @@
 import "./style.css";
 import { type NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import CharacterCard, {type Character} from "../../components/CharacterCard";
-import {useCharacters} from "../../components/hooks/useCharacters.tsx";
+import {useCharacters} from "../../hooks/useCharacters.tsx";
 
 function Index() {
 	const { id } = useParams();

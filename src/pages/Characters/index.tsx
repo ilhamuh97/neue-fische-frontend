@@ -1,82 +1,65 @@
 import axios, { type AxiosResponse } from "axios";
-
-import {type ReactElement, type RefObject, useCallback, useEffect, useRef, useState} from "react";
+import { type ReactElement, useCallback, useMemo, useRef, useState } from "react";
 import Searchbar from "../../components/Searchbar";
-import CharacterCard, {type Character} from "../../components/CharacterCard";
-import {useCharacters} from "../../components/hooks/useCharacters.tsx";
+import CharacterCard, { type Character } from "../../components/CharacterCard";
+import InfiniteScroll from "../../components/InifiniteScroll";
+import { useCharacters } from "../../hooks/useCharacters.tsx";
 import "./style.css";
 
 export default function Index(): ReactElement {
-	const {characters, setCharacters, nextUrl, setNextUrl} = useCharacters();
-	const [loading, setLoading] = useState<boolean>(false);
-	const [searchTerm, setSearchTerm] = useState<string>("");
-	const loaderRef: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement | null>(null);
+	const { characters, setCharacters, nextUrl, setNextUrl } = useCharacters();
+	const [loading, setLoading] = useState(false);
+	const [searchTerm, setSearchTerm] = useState("");
+	const isFetching = useRef(false);
 
-	const handleSearch = (value: string): void => {
-		setSearchTerm(value);
-	};
-
-	const filteredCharacters: Character[] = characters.filter((character) =>
-		character.name.toLowerCase().includes(searchTerm.toLowerCase())
-	);
+	const filteredCharacters = useMemo(() => {
+		const lowerSearch = searchTerm.toLowerCase();
+		return characters.filter((character) =>
+			character.name.toLowerCase().includes(lowerSearch)
+		);
+	}, [characters, searchTerm]);
 
 	const loadMoreCharacters = useCallback(async (): Promise<void> => {
-		if (searchTerm) return;
-		if (!nextUrl) return;
-		if (loading) return;
+		if (searchTerm || !nextUrl || isFetching.current) return;
 
+		isFetching.current = true;
 		setLoading(true);
 
 		try {
 			const response: AxiosResponse = await axios.get(nextUrl);
-			setNextUrl(response.data.info.next)
-			setCharacters((prev: Character[]): Character[] => [...prev, ...response.data.results]);
+			setNextUrl(response.data.info.next);
+			setCharacters((prev: Character[]) => [...prev, ...response.data.results]);
 		} catch (err) {
-			console.error(err);
+			console.error("Failed to load more characters:", err);
 		} finally {
 			setLoading(false);
+			isFetching.current = false;
 		}
-	}, [loading, nextUrl, searchTerm, setCharacters, setNextUrl]);
-
-
-	useEffect(() => {
-		const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-			if (entries[0].isIntersecting) {
-				void loadMoreCharacters()
-			}
-		});
-
-		const current: HTMLDivElement | null = loaderRef.current;
-
-		if (current) observer.observe(current);
-
-		return (): void => {
-			if (current) observer.unobserve(current);
-			observer.disconnect();
-		};
-	}, [loadMoreCharacters]);
+	}, [nextUrl, searchTerm, setCharacters, setNextUrl]);
 
 	return (
 		<div className="page">
 			<h1 className="title">Rick & Morty Galerie</h1>
+
 			<div className="search">
-				<Searchbar searchTerm={searchTerm} handleSearch={handleSearch} />
+				<Searchbar searchTerm={searchTerm} handleSearch={setSearchTerm} />
 			</div>
 
-			{characters.length === 0 && (
+			{filteredCharacters.length === 0 && (
 				<p className="empty">No character found.</p>
 			)}
 
-			<div className="grid">
-				{filteredCharacters
-				.map((character) => (
-					<CharacterCard key={character.id} character={character} />
-				))}
-			</div>
-
-			<div ref={loaderRef} style={{ height: 20 }}>
-				{loading && <p>Loading...</p>}
-			</div>
+			<InfiniteScroll
+				loading={loading}
+				hasMore={Boolean(nextUrl) && !searchTerm}
+				loadMore={loadMoreCharacters}
+			>
+				<div className="grid">
+					{filteredCharacters.map((character) => (
+						<CharacterCard key={character.id} character={character} />
+					))}
+				</div>
+			</InfiniteScroll>
 		</div>
 	);
 }

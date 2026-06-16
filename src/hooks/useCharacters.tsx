@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import {CharactersContext, type CharactersContextType} from "../../context/CharactersContext.tsx";
+import {CharactersContext, type CharactersContextType} from "../context/CharactersContext.tsx";
 
 export function useCharacters(): CharactersContextType {
 	const context: CharactersContextType | undefined = useContext(CharactersContext);

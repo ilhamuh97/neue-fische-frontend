@@ -1,7 +1,7 @@
 import {type ReactElement} from "react";
 import type {Character} from "../../components/CharacterCard";
 import {type NavigateFunction, useNavigate} from "react-router-dom";
-import {useCharacters} from "../../components/hooks/useCharacters.tsx";
+import {useCharacters} from "../../hooks/useCharacters.tsx";
 
 function Index(): ReactElement {
 	const nav: NavigateFunction = useNavigate();
