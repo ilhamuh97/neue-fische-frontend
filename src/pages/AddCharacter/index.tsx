@@ -11,13 +11,14 @@ type FormValues = {
 	status: "Alive" | "Dead" | "unknown",
 	species: string,
 	type: string,
-	gender: "Male" | "Female" | "unknown"
+	gender: "Male" | "Female" | "Genderless" | "unknown"
 	image: string
 }
 
 function Index(): ReactNode {
 	const {register, handleSubmit, formState} = useForm<FormValues>({mode: "onChange"});
 	const {errors, isValid} = formState;
+
 	const nav: NavigateFunction = useNavigate();
 	const {setCharacters} = useCharacters();
 
@@ -29,7 +30,7 @@ function Index(): ReactNode {
 				id: uuid
 		} as Character]);
 
-		nav("/characters");
+		nav(`/characters/${uuid}`);
 	}
 
 
@@ -80,7 +81,7 @@ function Index(): ReactNode {
 				<label>
 					Type
 					<input {...register("type", {
-						required: "Type is required",
+						required: false,
 						minLength: {
 							value: 5,
 							message: "Type must be at least 5 characters"

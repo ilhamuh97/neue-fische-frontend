@@ -63,7 +63,7 @@ export default function Index({ character }: CharacterCardProps): ReactNode {
 			<div className="card-info">
 				<p><span>Species:</span> {character.species}</p>
 
-				<p><span>Type:</span> {character.type || "Unknown"}</p>
+				<p><span>Type:</span> {character.type || "-"}</p>
 
 				<p><span>Gender:</span> {character.gender}</p>
 			</div>
